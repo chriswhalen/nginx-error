@@ -259,7 +259,10 @@
             document.getElementsByTagName('html')[0].style.background = errors[e].color
 
             window.addEventListener('load', function () {
-                document.getElementsByTagName('body')[0].classList += 'ready'
+                document.getElementsByTagName('body')[0].classList += 'ready '
+                setTimeout(function () {
+                    document.getElementsByTagName('body')[0].classList += 'done '
+                }, 1000)
             }, false);
         }}
     </script>
@@ -314,6 +317,7 @@
             font-weight: 400;
             opacity: 0.5;
             text-decoration: none;
+            transition: opacity 0.2s ease;
             font-size: 1.2em;
         }
 
@@ -321,35 +325,92 @@
             display: none;
         }
 
+        .ready a:hover {
+            opacity: 0.8;
+        }
+
         #body {
             margin: 0 10vw;
+            overflow: hidden;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
             width: 80vw;
         }
 
         #icon {
-            bottom: 20vh;
+            top: 20vh;
             font-size: 50vh;
             mix-blend-mode: overlay;
             opacity: 0;
-            overflow: hidden;
-            padding-right: 10%;
             position: absolute;
-            right: 0;
+            right: 2vw;
             text-align: right;
-            transition: opacity 1s;
+            transition: all 1s ease;
             z-index: -1;
+            transform: scale(1);
         }
 
         .ready #icon {
-            opacity: 0.2;
+            opacity: 0.25;
+            transform: scale(1.2);
+            right: 12vw;
+        }
+
+        .done #icon {
+            transition: auto;
+        }
+
+        @media (max-width: 1279px) {
+            html, body {
+                font-size: 10pt;
+            }
+
+            h1 {
+                font-size: 5em;
+            }
+
+            .ready #icon {
+                opacity: 0.2;
+                right: 2vw;
+                transform: scale(0.9);
+            }
+        }
+
+        @media (max-height: 719px) {
+            html, body {
+                font-size: 10pt;
+            }
+
+            h1 {
+                font-size: 5em;
+            }
         }
 
         @media (max-width: 639px) {
             html, body {
                 font-size: 8pt;
             }
+
+            h1 {
+                font-size: 4em;
+            }
+
+            .ready #icon {
+                opacity: 0.15;
+                right: -8vw;
+                transform: scale(0.6);
+            }
         }
+
+        @media (max-height: 359px)  {
+            html, body {
+                font-size: 8pt;
+            }
+
+            h1 {
+                font-size: 4em;
+            }
+        }
+
     </style>
 
 </head><body>
@@ -364,6 +425,6 @@
 
     <script> error(<!--# echo var="status" default="" -->) </script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/js/all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
 
 </body></html>

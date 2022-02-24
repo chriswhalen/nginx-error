@@ -258,7 +258,10 @@
             document.getElementById('status').innerText = e
             document.getElementsByTagName('html')[0].style.background = errors[e].color
 
-        } }
+            window.addEventListener('load', function () {
+                document.getElementsByTagName('body')[0].classList += 'ready'
+            }, false);
+        }}
     </script>
 
     <style>
@@ -328,17 +331,21 @@
             bottom: 20vh;
             font-size: 50vh;
             mix-blend-mode: overlay;
-            opacity: 0.2;
+            opacity: 0;
+            overflow: hidden;
             padding-right: 10%;
             position: absolute;
             right: 0;
             text-align: right;
-            overflow: hidden;
+            transition: opacity 1s;
             z-index: -1;
         }
 
-        @media (max-width: 639px) {
+        .ready #icon {
+            opacity: 0.2;
+        }
 
+        @media (max-width: 639px) {
             html, body {
                 font-size: 8pt;
             }

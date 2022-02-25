@@ -22,7 +22,7 @@
                 name: 'Unauthorized',
                 description: 'Your request has not been applied because it lacks valid authentication credentials for this resource.',
                 color: '#00838F',
-                icon: 'hand-paper'
+                icon: 'hand'
             },
             402: {
                 name: 'Payment Required',
@@ -40,17 +40,17 @@
                 name: 'Not Found',
                 description: 'The origin server did not find a current representation for this resource or is not willing to disclose that one exists.',
                 color: '#283593',
-                icon: 'search'
+                icon: 'magnifying-glass'
             },
             405: {
                 name: 'Method Not Allowed',
                 description: 'The method received in your request is known by the origin server but not supported by this resource.',
                 color: '#0277BD',
-                icon: 'code'
+                icon: 'text-slash'
             },
             406: {
                 name: 'Not Acceptable',
-                description: 'this resource does not have a current representation that would be acceptable to the user agent and the server is unwilling to supply a default representation.',
+                description: 'This resource does not have a current representation that would be acceptable to the user agent and the server is unwilling to supply a default representation.',
                 color: '#00838F',
                 icon: 'thumbs-down'
             },
@@ -58,7 +58,7 @@
                 name: 'Proxy Authentication Required',
                 description: 'The client must authenticate itself in order to use a proxy.',
                 color: '#4527A0',
-                icon: 'key'
+                icon: 'id-card-clip'
             },
             408: {
                 name: 'Request Timeout',
@@ -148,7 +148,7 @@
                 name: 'Failed Dependency',
                 description: 'The method could not be performed on the resource because the requested action depended on another action that has failed.',
                 color: '#0277BD',
-                icon: 'asterisk'
+                icon: 'link-slash'
             },
             426: {
                 name: 'Upgrade Required',
@@ -214,7 +214,7 @@
                 name: 'HTTP Version Not Supported',
                 description: 'The server does not support, or refuses to support, the major version of HTTP that was used in your request message.',
                 color: '#880E4F',
-                icon: 'hourglass'
+                icon: 'code'
             },
             506: {
                 name: 'Variant Also Negotiates',
@@ -226,7 +226,7 @@
                 name: 'Insufficient Storage',
                 description: 'The method could not be performed on the resource because the server is unable to store the representation needed to successfully complete your request.',
                 color: '#B71C1C',
-                icon: 'archive'
+                icon: 'box-open'
             },
             508: {
                 name: 'Loop Detected',
@@ -244,7 +244,7 @@
                 name: 'Network Authentication Required',
                 description: 'The client needs to authenticate to gain network access.',
                 color: '#880E4F',
-                icon: 'user'
+                icon: 'network-wired'
             },
         }
 
@@ -253,18 +253,22 @@
             document.title = errors[e].name
             document.getElementById('name').innerText = errors[e].name
             document.getElementById('description').innerText = errors[e].description
-            document.getElementById('icon').innerHTML = '<i class="fas fa-'+ errors[e].icon +'"></i>'
+            document.getElementById('icon').innerHTML = '<i class="fa-solid fa-'+ errors[e].icon +'"></i>'
             document.getElementById('anchor').href = 'https://httpstatus.es/' + e
             document.getElementById('status').innerText = e
             document.getElementsByTagName('html')[0].style.background = errors[e].color
-
-            window.addEventListener('load', function () {
-                document.getElementsByTagName('body')[0].classList += 'ready '
-                setTimeout(function () {
-                    document.getElementsByTagName('body')[0].classList += 'done '
-                }, 1000)
-            }, false);
         }}
+
+        window.addEventListener('load', function() {
+
+            document.getElementsByTagName('body')[0].classList += 'ready '
+
+            setTimeout(function () {
+                document.getElementsByTagName('body')[0].classList += 'done '
+            }, 1000)
+
+        }, false);
+
     </script>
 
     <style>
@@ -280,6 +284,7 @@
             height: 100vh;
             margin: 0;
             min-width: 100vw;
+            overflow-x: hidden;
             padding: 0;
             user-select: none;
             vertical-align: middle;
@@ -330,8 +335,7 @@
         }
 
         #body {
-            margin: 0 10vw;
-            overflow: hidden;
+            margin: 10vh 10vw;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
             width: 80vw;
         }
@@ -342,7 +346,7 @@
             mix-blend-mode: overlay;
             opacity: 0;
             position: absolute;
-            right: 2vw;
+            right: 6vw;
             text-align: right;
             transition: all 1s ease;
             z-index: -1;
@@ -360,6 +364,7 @@
         }
 
         @media (max-width: 1279px) {
+
             html, body {
                 font-size: 10pt;
             }
@@ -370,12 +375,13 @@
 
             .ready #icon {
                 opacity: 0.2;
-                right: 2vw;
+                right: 6vw;
                 transform: scale(0.9);
             }
         }
 
         @media (max-height: 719px) {
+
             html, body {
                 font-size: 10pt;
             }
@@ -386,6 +392,7 @@
         }
 
         @media (max-width: 639px) {
+
             html, body {
                 font-size: 8pt;
             }
@@ -396,18 +403,26 @@
 
             .ready #icon {
                 opacity: 0.15;
-                right: -8vw;
-                transform: scale(0.6);
+                right: -4vw;
             }
         }
 
-        @media (max-height: 359px)  {
+        @media (max-height: 479px)  {
+
             html, body {
                 font-size: 8pt;
             }
 
             h1 {
                 font-size: 4em;
+            }
+        }
+
+        @media (max-height: 479px) and (max-width: 639px) {
+
+            .ready #icon {
+                right: 8vw;
+                transform: scale(1.2);
             }
         }
 
@@ -421,6 +436,7 @@
         <h2 id="description">The server was unable to fulfill your request.</h2>
         <a id="anchor" target="_blank">Learn more</a>
     </div>
+
     <div id="icon"><i class="fas fa-times-circle"></i></div>
 
     <script> error(<!--# echo var="status" default="" -->) </script>
